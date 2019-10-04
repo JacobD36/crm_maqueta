@@ -236,6 +236,7 @@
                 });
             },
             edita_contacto(id){
+                console.log("ID: "+id);
                 sys_user.tipoAccion=2;
                 axios.post('controlador/edita_sys_usuario.php',{
                     id_base:id
