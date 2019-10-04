@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php 
+    session_start();
+    if ($_SESSION['usuario'] == '') {
+        header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/app_maqueta/index.php');
+    }
+?>
 <section class="content-header">
     <h1>CONFIGURACIÓN</h1>
     <ol class="breadcrumb">

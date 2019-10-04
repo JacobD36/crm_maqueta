@@ -12,14 +12,14 @@
             $perfil = $data->get_user_perfil($lista['idperfil']);
             if ($lista['estado']==0) {
                 $btn_editar = "<a href='javascript:void(0)' style='text-decoration:none;'><button type='button' class='btn btn-success btn-sm' disabled><i class='glyphicon glyphicon-pencil'></i></button></a>";
-                $btn_eliminar = "<a href='javascript:void(0)' style='text-decoration:none;'><button type='button' class='btn btn-success btn-sm' onclick='sys_user.activa_usuario(".$lista['id'].")'><i class='glyphicon glyphicon-ok'></i></button></a>";
+                $btn_eliminar = "<a href='javascript:void(0)' style='text-decoration:none;' onclick='sys_user.activa_usuario(".$lista['id'].")' title='Activar Usuario'><button type='button' class='btn btn-success btn-sm'><i class='glyphicon glyphicon-ok'></i></button></a>";
                 $btn_reset = "<a href='javascript:void(0)' style='text-decoration:none;'><button type='button' class='btn btn-warning btn-sm' disabled><i class='glyphicon glyphicon-eye-close'></i></button></a>";
             } else {
-                $btn_editar = "<a href='javascript:void(0)' data-toggle='modal' data-target='#myModal' onclick='sys_user.edita_contacto(".$lista['id'].");' style='text-decoration:none;'><button type='button' class='btn btn-success btn-sm'><i class='glyphicon glyphicon-pencil'></i></button></a>";
-                $btn_eliminar = "<a href='javascript:void(0)' style='text-decoration:none;'><button type='button' class='btn btn-danger btn-sm' onclick='sys_user.desactiva_usuario(".$lista['id'].")'><i class='glyphicon glyphicon-ban-circle'></i></button></a>";
-                $btn_reset = "<a href='javascript:void(0)' style='text-decoration:none;' title='Resetear Contraseña'><button type='button' class='btn btn-warning btn-sm' onclick='sys_user.reset_password(".$lista['id'].")'><i class='glyphicon glyphicon-eye-close'></i></button></a>";
+                $btn_editar = "<a href='javascript:void(0)' data-toggle='modal' data-target='#myModal' onclick='sys_user.edita_contacto(".$lista['id'].");' style='text-decoration:none;' title='Editar Usuario'><button type='button' class='btn btn-success btn-sm'><i class='glyphicon glyphicon-pencil'></i></button></a>";
+                $btn_eliminar = "<a href='javascript:void(0)' style='text-decoration:none;' onclick='sys_user.desactiva_usuario(".$lista['id'].")' title='Desactivar Usuario'><button type='button' class='btn btn-danger btn-sm'><i class='glyphicon glyphicon-ban-circle'></i></button></a>";
+                $btn_reset = "<a href='javascript:void(0)' style='text-decoration:none;' onclick='sys_user.reset_password(".$lista['id'].")' title='Resetear Contraseña'><button type='button' class='btn btn-warning btn-sm'><i class='glyphicon glyphicon-eye-close'></i></button></a>";
             }
-            $arreglo["data"][] = array(utf8_encode($nombre),utf8_encode($perfil['descripcion']),$lista['codusuario'],$lista['estado'],$btn_editar." ".$btn_eliminar." ".$btn_reset);
+            $arreglo["data"][] = array($nombre,$perfil['descripcion'],$lista['codusuario'],$lista['estado'],$btn_editar." ".$btn_eliminar." ".$btn_reset);
         }
     } else {
         $arreglo["data"][] = array('SIN REGISTROS','','',3,'');

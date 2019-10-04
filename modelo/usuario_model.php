@@ -40,9 +40,19 @@ class usuario_model{
         return $row;
     }
 
-    public function get_campanas(){
-        $rows = DB::query("select * from campanas where estado=1");
+    public function get_all_campanas($nombre){
+        $rows = "";
+        if ($nombre == "") {
+            $rows = DB::query("select * from campanas");
+        } else {
+            $rows = DB::query("select * from campanas where concat(cod_campana,desc_campana) like %ss",$nombre);
+        }
         return $rows;
+    }
+
+    public function get_campana($id){
+        $row = DB::queryFirstRow("select * from campanas where id=%i",$id);
+        return $row;
     }
 
     public function get_all_user_campaign($id){
@@ -91,12 +101,22 @@ class usuario_model{
     }
 
     public function get_user_perfil($id){
-        $rows = DB::query("select descripcion from perfiles where id=%i",$id);
-        return $rows;
+        $row = DB::queryFirstRow("select descripcion from perfiles where id=%i",$id);
+        return $row;
     }
 
     public function get_all_perfiles(){
         $rows = DB::query("select * from perfiles where estado=1");
+        return $rows;
+    }
+
+    public function get_all_perfiles_mng($nombre){
+        $rows = "";
+        if($nombre==""){
+            $rows = DB::query("select * from perfiles;");
+        } else {
+            $rows = DB::query("select * from perfiles where descripcion like %ss",$nombre);
+        }
         return $rows;
     }
 
@@ -122,8 +142,25 @@ class usuario_model{
         return $rows['idperfil'];
     }
 
+    public function get_perfil_data($id){
+        $row = DB::queryFirstRow("select * from perfiles where id=%i",$id);
+        return $row;
+    }
+
     public function cambia_estado($id,$opt){
         DB::update('usuarios',array(
+            'estado'=>$opt
+        ),'id=%i',$id);
+    }
+
+    public function cambia_estado_camp($id,$opt){
+        DB::update('campanas',array(
+            'estado'=>$opt
+        ),'id=%i',$id);
+    }
+
+    public function cambia_estado_perf($id,$opt){
+        DB::update('perfiles',array(
             'estado'=>$opt
         ),'id=%i',$id);
     }
@@ -185,6 +222,19 @@ class usuario_model{
         }
     }
 
+    public function set_new_camp($cod_campana,$desc_campana){
+        DB::insert('campanas',array(
+            'cod_campana'=>$cod_campana,
+            'desc_campana'=>$desc_campana
+        ));
+    }
+
+    public function set_new_perfil($descripcion){
+        DB::insert('perfiles',array(
+            'descripcion'=>$descripcion
+        ));
+    }
+
     public function existe_user($codusuario){
         $rows = DB::query("select * from usuarios where codusuario=%s",$codusuario);
         if($rows!=null){
@@ -196,6 +246,7 @@ class usuario_model{
 
     public function set_new_user($nombre1,$nombre2,$apellido1,$apellido2,$dni,$idperfil,$superadm,$password1){
         $codusuario = substr($nombre1,0,1);
+        $ape1_original = $apellido1;
         $apellido1 = str_replace("Ñ","N",$apellido1);
         $first_c = substr($apellido2,0,1);
         $codusuario.=$apellido1;
@@ -216,7 +267,7 @@ class usuario_model{
                 'dni'=>$dni,
                 'nombre1'=>$nombre1,
                 'nombre2'=>$nombre2,
-                'apellido1'=>$apellido1,
+                'apellido1'=>$ape1_original,
                 'apellido2'=>$apellido2
             ));
             $pass_salt = $this->generateHashWithSalt($password1);
@@ -244,6 +295,19 @@ class usuario_model{
             'hashcode'=>$hash,
             'salt'=>$salt
         ),'codusuario=%s',$codusuario);
+    }
+
+    public function actualiza_campana($id,$cod_campana,$desc_campana){
+        DB::update('campanas',array(
+            'cod_campana'=>$cod_campana,
+            'desc_campana'=>$desc_campana
+        ),'id=%i',$id);
+    }
+
+    public function actualiza_perfil($id,$descripcion){
+        DB::update('perfiles',array(
+            'descripcion'=>$descripcion
+        ),'id=%i',$id);
     }
 
     public function elimina_permisos($idperfil,$idcampana){

@@ -1,5 +1,8 @@
 <?php 
     session_start();
+    if ($_SESSION['usuario'] == '') {
+        header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/app_maqueta/index.php');
+    }
     require_once($_SESSION['BASE']."/modelo/usuario_model.php");
     $usuario = new usuario_model();
     $request_body = file_get_contents("php://input");

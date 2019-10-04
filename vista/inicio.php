@@ -1,7 +1,7 @@
 <?php 
     session_start();
     if ($_SESSION['usuario'] == '') {
-      header('Location: ./index.php');
+      header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/app_maqueta/index.php');
     }
     require_once($_SESSION['BASE']."/modelo/usuario_model.php");
     $usr = new usuario_model();
@@ -56,7 +56,7 @@
         });
     </script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini fixed">
+<body class="hold-transition skin-purple-light sidebar-mini fixed">
 <!-- Site wrapper -->
 <div class="wrapper" id="main_elem">
   <header class="main-header">
@@ -85,8 +85,9 @@
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="javascript:void(0)" @click="load_wrapper('./vista/usuarios.php');"><i class="fa fa-users"></i> Usuarios</a></li>
+                <li><a href="javascript:void(0)" @click="load_wrapper('./vista/perfiles.php');"><i class="fa fa-briefcase"></i> Perfiles</a></li>
                 <li><a href="javascript:void(0)" @click="muestraMensaje(2);"><i class="fa fa-unlock"></i> Permisos</a></li>
-                <li><a href="javascript:void(0)" @click="muestraMensaje(3);"><i class="fa fa-calendar-minus-o"></i> Campañas</a></li>
+                <li><a href="javascript:void(0)" @click="load_wrapper('./vista/campanas.php');"><i class="fa fa-calendar-minus-o"></i> Campañas</a></li>
               </ul>
             </li>
           <li class="dropdown messages-menu">

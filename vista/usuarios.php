@@ -1,5 +1,8 @@
 <?php 
     session_start();
+    if ($_SESSION['usuario'] == '') {
+        header('Location: '.$_SERVER['DOCUMENT_ROOT'].'/app_maqueta/index.php');
+    }
     require_once($_SESSION['BASE']."/modelo/usuario_model.php");
     $usr = new usuario_model();
     $perfiles = $usr->get_all_perfiles();
@@ -7,7 +10,7 @@
 <!-- Content Header (Page header) -->
 <style type="text/css">
     .modal-header {
-        background-color: #5c94cc;
+        background-color: #605ca8;
         color: white;
     }
 </style>
@@ -22,7 +25,7 @@
     <div id="sys_user">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Búsqueda</h3>
+                <h3 class="box-title"><i class="fa fa-search"></i> Búsqueda</h3>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -55,7 +58,7 @@
         </div>
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Usuarios Registrados</h3>
+                <h3 class="box-title"><i class="fa fa-users"></i> Usuarios Registrados</h3>
             </div>
             <div class="box-body">
                 <div class="row">
@@ -236,7 +239,6 @@
                 });
             },
             edita_contacto(id){
-                console.log("ID: "+id);
                 sys_user.tipoAccion=2;
                 axios.post('controlador/edita_sys_usuario.php',{
                     id_base:id
@@ -522,10 +524,10 @@
                             "targets": [3],
                             "render": function(data, type, full) {
                             if(data==1){
-                                return "<span class='label label-success'>ACTIVO</span>";
+                                return "<center><span class='label label-success'>ACTIVO</span></center>";
                             } else {
                                 if (data==0) {
-                                    return "<span class='label label-danger'>INACTIVO</span>";
+                                    return "<center><span class='label label-danger'>INACTIVO</span></center>";
                                 } else {
                                     if(data==3){
                                         return '';
@@ -542,7 +544,7 @@
                         },
                     ],
                 });
-                $("th").css("background-color", "#4c88bb");
+                $("th").css("background-color", "#00a65a");
                 $("th").css("color", "white");
             }
         },
