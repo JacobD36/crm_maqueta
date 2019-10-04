@@ -331,8 +331,8 @@
                         },
                     ],
                 });
-                $("th").css("background-color", "#00a65a");
-                $("th").css("color", "white");
+                //$("th").css("background-color", "#00a65a");
+                //$("th").css("color", "white");
             }
         },
         mounted() {
