@@ -63,10 +63,10 @@
     <!-- Logo -->
     <a href="./inicio.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">Báy</span>
+      <span class="logo-mini"><img src="./vista/img/cloud_logo.png" id="id_img_header" class="center-block img-responsive" style="height:50px;"/></span>
       <!-- logo for regular state and mobile devices -->
       <!--<span class="logo-lg"><b>Báyental</b></span>-->
-      <span class="logo-lg"><img src="./vista/img/bayental_logo_2.png" id="id_img_header" class="center-block img-responsive" style="height:50px;"/></span>
+      <span class="logo-lg"><img src="./vista/img/crm_logo_2.png" id="id_img_header" class="center-block img-responsive" style="height:50px;"/></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -182,7 +182,84 @@
   <!-- =============================================== -->
   <!-- Content Wrapper. Contains page content --> 
   <div class="content-wrapper" id="main_content">
-        
+  <!-- Contenido de ejemplo -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Panel de Control</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="./inicio.php"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>150</h3>
+
+              <p>Nuevas Ordenes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Porcentaje de rechazo</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>44</h3>
+
+              <p>Contactos Efectivos</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>65</h3>
+
+              <p>Contactos No Efectivos</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+    </section>
   </div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
