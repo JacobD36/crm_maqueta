@@ -56,7 +56,7 @@
         });
     </script>
 </head>
-<body class="hold-transition skin-purple-light sidebar-mini fixed">
+<body class="hold-transition skin-red-light sidebar-mini fixed">
 <!-- Site wrapper -->
 <div class="wrapper" id="main_elem">
   <header class="main-header">
